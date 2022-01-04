@@ -1,13 +1,26 @@
 {
-    "devDependencies": {
-      "node": "^16.6.1"
-    },
-    "dependencies": {
-      "@discordjs/builders": "^0.11.0",
-      "@discordjs/rest": "^0.2.0-canary.0",
-      "discord": "^0.8.2",
-      "discord-api-types": "^0.26.1",
-      "discord.js": "^13.5.0",
-      "mongoose": "^6.1.4"
-    }
+  "name": "neothereum",
+  "version": "1.0.0",
+  "description": "A really bad economy bot hosted under GPL v3 license",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Just-a-Unity-Dev/neothereum.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "GPL v3",
+  "bugs": {
+    "url": "https://github.com/Just-a-Unity-Dev/neothereum/issues"
+  },
+  "homepage": "https://github.com/Just-a-Unity-Dev/neothereum#readme",
+  "dependencies": {
+    "discord.js": "^13.5.0",
+    "dotenv": "^10.0.0",
+    "glob": "^7.2.0",
+    "mongoose": "^6.1.4"
+  }
 }

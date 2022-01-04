@@ -1,55 +1,17 @@
-// main.js or index.js, however you want to call it
-const token = process.env['token']
-const fs = require('fs');
-const { Client, Collection, Intents } = require('discord.js');
+require('dotenv').config()
+const { Client, Collection } = require("discord.js");
 
 const client = new Client({
-  intents: [
-    Intents.FLAGS.GUILDS,
-  ]
+    intents: 32767,
 });
+module.exports = client;
 
-const accountSchema = require("./schemas/account.js")
-
-const mongoose = require('mongoose')
-
+// Global Variables
 client.commands = new Collection();
-const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
-    
-for (const file of commandFiles) {
-	const command = require(`./commands/${file}`);
-	client.commands.set(command.data.name, command);
-}
+client.slashCommands = new Collection();
+client.config = require("./config.json");
 
-client.once('ready', async () => {
-	console.log('Ready!');
-  await mongoose.connect(
-    process.env['connectionString'],
-    {
-      'keepAlive': true
-    }
-  )
+// Initializing the project
+require("./handler")(client);
 
-  setTimeout(async () => {
-    await new accountSchema({
-      
-    }).save()
-  }, 1000)
-});
-
-client.on('interactionCreate', async interaction => {
-	if (!interaction.isCommand()) return;
-
-	const command = client.commands.get(interaction.commandName);
-
-	if (!command) return;
-
-	try {
-		await command.execute(client, interaction);
-	} catch (error) {
-		console.error(error);
-		return interaction.reply({ content: 'There was an error while executing this command!', ephemeral: true });
-	}
-});
-
-client.login(token);
+client.login(process.env.TOKEN);
