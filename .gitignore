@@ -1,2 +1,5 @@
 # bruh, mf git really went from 9k to 10 :skull:
 node_modules
+
+#git ignore
+.env
