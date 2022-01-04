@@ -2,7 +2,8 @@ require('dotenv').config()
 const { Client, Collection } = require("discord.js");
 
 const client = new Client({
-    intents: 32767,
+    //intents: 32767,
+    intents: 8,
 });
 module.exports = client;
 
