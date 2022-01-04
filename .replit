@@ -1,0 +1,1 @@
+run = "npx node deploy-commands.js && npx node index.js"
