@@ -10,7 +10,7 @@ const globPromise = promisify(glob);
  */
 module.exports = async (client) => {
     // Commands
-    const commandFiles = await globPromise(`${process.cwd()}/commands/**/*.js`);
+    const commandFiles = await globPromise(`${process.cwd()}../commands/**/*.js`);
     commandFiles.map((value) => {
         const file = require(value);
         const splitted = value.split("/");
@@ -43,7 +43,7 @@ module.exports = async (client) => {
     client.on("ready", async () => {
         // Register for a single guild
         await client.guilds.cache
-            .get("856412585862496266")
+            .get("926788508478210060")
             .commands.set(arrayOfSlashCommands);
 
         // Register for all the guilds the bot is in
