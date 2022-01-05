@@ -41,14 +41,14 @@ module.exports = {
             })
             new accountSchema({
                 user_id: member.user.id,
-                neotheruem: amount,
+                neothereum: amount,
             }).save();
             console.log(await accountSchema.findOne({ user_id: member.id}))
             interaction.followUp(`User **${member.user}**'s balance has been set to **${amount}** Neothereum`)
         } else {
             new accountSchema({
                 user_id: member.user.id,
-                neotheruem: amount,
+                neothereum: amount,
             }).save();
             interaction.followUp(`User **${member.user}** has been registered in the database with starting balance of **${amount}** Neotheruem.`)
         }

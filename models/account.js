@@ -6,12 +6,12 @@ module.exports = model('account', new Schema({
             default: "0",
             required: true
         },
-        neotheruem: {
+        neothereum: {
             type: Number,
             default: 0,
             required: true
         }
     },{
-        collection: "neotheruem"
+        collection: "neothereum"
     })
 );

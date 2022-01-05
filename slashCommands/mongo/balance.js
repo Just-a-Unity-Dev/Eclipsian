@@ -26,13 +26,14 @@ module.exports = {
         const data = await accountSchema.findOne({ user_id: member.id })
 
         if (data) {
-            interaction.followUp(`User **${member.user}** has a balance of ${data.neothereum} Neotheruem.`)
+            interaction.followUp(`User **${member.user}** has a balance of ${data.neothereum} Neothereum.`)
+            console.log(data)
         } else {
             new accountSchema({
                 user_id: member.user.id,
-                neotheruem: 0,
+                neothereum: 0,
             }).save();
-            interaction.followUp(`User **${member.user}** has a balance of 0 Neotheruem.`)
+            interaction.followUp(`User **${member.user}** has a balance of 0 Neothereum.`)
         }
 
     },

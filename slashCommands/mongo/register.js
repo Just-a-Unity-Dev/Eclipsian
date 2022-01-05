@@ -33,9 +33,10 @@ module.exports = {
         } else {
             new accountSchema({
                 user_id: member.user.id,
-                neotheruem: 0,
+                neothereum: 0,
+                
             }).save();
-            interaction.followUp(`User **${member.user}** has been registered in the database with starting balance of 0 Neotheruem.`)
+            interaction.followUp(`User **${member.user}** has been registered in the database with starting balance of 0 Neothereum.`)
         }
 
     },
