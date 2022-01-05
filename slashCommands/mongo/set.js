@@ -30,19 +30,28 @@ module.exports = {
         //TODO
         //Add a restriction to regulars that prevent them from using this command
         const accountSchema = require("../../models/account")
-        const [ user ] = args;
+        const [ user, amount ] = args;
         const member = interaction.guild.members.cache.get(user)
 
         const data = await accountSchema.findOne({ user_id: member.id})
 
         if (data) {
-            interaction.followUp("User is already registered!")
+            // lazy way but it works, dnc
+            await accountSchema.deleteOne({
+                user_id: member.id
+            })
+            new accountSchema({
+                user_id: member.user.id,
+                neotheruem: amount,
+            }).save();
+            console.log(await accountSchema.findOne({ user_id: member.id}))
+            interaction.followUp(`User **${member.user}**'s balance has been set to **${amount}** Neothereum`)
         } else {
             new accountSchema({
                 user_id: member.user.id,
-                neotheruem: 0,
+                neotheruem: amount,
             }).save();
-            interaction.followUp(`User **${member.user}** has been registered in the database with starting balance of 0 Neotheruem.`)
+            interaction.followUp(`User **${member.user}** has been registered in the database with starting balance of **${amount}** Neotheruem.`)
         }
 
     },
