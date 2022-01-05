@@ -25,7 +25,6 @@ module.exports = {
      * @param {String[]} args
      */
     run: async (client, interaction, args) => {
-        console.log(interaction.author)
         if (interaction.author) {}
         //TODO
         //Add a restriction to regulars that prevent them from using this command

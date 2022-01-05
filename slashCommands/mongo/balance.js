@@ -1,8 +1,8 @@
 const { Client, CommandInteraction } = require("discord.js");
 
 module.exports = {
-    name: "register",
-    description: "Register a user to the database. Only usable by workers",
+    name: "balance",
+    description: "Query a user's Neothereum amount to the database.",
     type: 'CHAT_INPUT',
     options: [
         {
@@ -19,9 +19,6 @@ module.exports = {
      * @param {String[]} args
      */
     run: async (client, interaction, args) => {
-        if (interaction.author) {}
-        //TODO
-        //Add a restriction to regulars that prevent them from using this command
         const accountSchema = require("../../models/account")
         const [ user ] = args;
         const member = interaction.guild.members.cache.get(user)
@@ -29,13 +26,13 @@ module.exports = {
         const data = await accountSchema.findOne({ user_id: member.id})
 
         if (data) {
-            interaction.followUp("User is already registered!")
+            interaction.followUp(`User **${member.user}** has a balance of ${data.neothereum} Neotheruem.`)
         } else {
             new accountSchema({
                 user_id: member.user.id,
                 neotheruem: 0,
             }).save();
-            interaction.followUp(`User **${member.user}** has been registered in the database with starting balance of 0 Neotheruem.`)
+            interaction.followUp(`User **${member.user}** has a balance of 0 Neotheruem.`)
         }
 
     },
