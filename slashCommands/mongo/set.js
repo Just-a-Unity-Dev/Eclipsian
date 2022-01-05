@@ -1,14 +1,20 @@
 const { Client, CommandInteraction } = require("discord.js");
 
 module.exports = {
-    name: "register",
-    description: "Register a user to the database. Only usable by workers",
+    name: "set",
+    description: "Set a user's balance to the database. Only usable by workers",
     type: 'CHAT_INPUT',
     options: [
         {
             name: "user",
             description: "User to register to the database.",
             type: "USER",
+            required: true,
+        },
+        {
+            name: "amount",
+            description: "Amount to set to the database.",
+            type: "NUMBER",
             required: true
         }
     ],
