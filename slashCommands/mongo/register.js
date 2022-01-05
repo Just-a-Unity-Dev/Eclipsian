@@ -19,9 +19,9 @@ module.exports = {
      * @param {String[]} args
      */
     run: async (client, interaction, args) => {
-        if (!interaction.member.roles.cache.find(r => r.id == "928135978844033065")) {return interaction.reply("You are not a worker!")}
+        if (!interaction.member.roles.find(r => r.id === "926788900083630102")) {return interaction.reply("You are not a worker!")}
         // above is the error
-        
+
         const accountSchema = require("../../models/account")
         const [ user ] = args;
         const member = interaction.guild.members.cache.get(user)

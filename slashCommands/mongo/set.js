@@ -25,7 +25,7 @@ module.exports = {
      * @param {String[]} args
      */
     run: async (client, interaction, args) => {
-        if (!interaction.member.roles.cache.has("928135978844033065")) {return interaction.reply("You are not a worker!")}
+        if (!interaction.member.roles.find(r => r.id === "926788900083630102")) {return interaction.reply("You are not a worker!")}
         if (interaction.author) {}
         //TODO
         //Add a restriction to regulars that prevent them from using this command
