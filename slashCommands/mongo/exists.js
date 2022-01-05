@@ -1,13 +1,13 @@
 const { Client, CommandInteraction } = require("discord.js");
 
 module.exports = {
-    name: "register",
-    description: "Register a user to the database. Only usable by workers",
+    name: "exists",
+    description: "Query a user to the database.",
     type: 'CHAT_INPUT',
     options: [
         {
             name: "user",
-            description: "User to register to the database.",
+            description: "User to query in the database.",
             type: "USER",
             required: true
         }
@@ -18,9 +18,7 @@ module.exports = {
      * @param {CommandInteraction} interaction
      * @param {String[]} args
      */
-    run: async (client, interaction, args) => {
-        //TODO
-        //Add a restriction to regulars that prevent them from using this command
+    run: async (client, interaction, args) => {        
         const accountSchema = require("../../models/account")
         const [ user ] = args;
         const member = client.users.fetch(user)
@@ -30,11 +28,7 @@ module.exports = {
         if (data) {
             interaction.followUp("User is already registered!")
         } else {
-            new accountSchema({
-                user_id: member.user.id,
-                neotheruem: 0,
-            }).save();
-            interaction.followUp(`User **${member.user}** has been registered in the databse with starting balance of 0 Neotheruem.`)
+            interaction.followUp("User is not registered!")
         }
 
     },
