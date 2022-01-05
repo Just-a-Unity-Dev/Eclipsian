@@ -23,7 +23,7 @@ module.exports = {
         const [ user ] = args;
         const member = interaction.guild.members.cache.get(user)
 
-        const data = await accountSchema.findOne({ user_id: member.id})
+        const data = await accountSchema.findOne({ user_id: member.id })
 
         if (data) {
             interaction.followUp(`User **${member.user}** has a balance of ${data.neothereum} Neotheruem.`)
