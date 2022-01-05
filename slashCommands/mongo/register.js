@@ -19,13 +19,17 @@ module.exports = {
      * @param {String[]} args
      */
     run: async (client, interaction, args) => {
+        console.log(interaction.author)
+        if (interaction.author) {}
         //TODO
         //Add a restriction to regulars that prevent them from using this command
         const accountSchema = require("../../models/account")
         const [ user ] = args;
-        const member = client.users.fetch(user)
+        const member = interaction.guild.members.cache.get(user)
 
-        const data = await accountSchema.findOne({ user_id: member.user.id})
+        console.log(member)
+
+        const data = await accountSchema.findOne({ user_id: member.id})
 
         if (data) {
             interaction.followUp("User is already registered!")
