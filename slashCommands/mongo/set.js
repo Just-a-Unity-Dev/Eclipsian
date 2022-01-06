@@ -25,10 +25,9 @@ module.exports = {
      * @param {String[]} args
      */
     run: async (client, interaction, args) => {
-        if (!interaction.member.roles.find(r => r.id === "926788900083630102")) {return interaction.reply("You are not a worker!")}
-        if (interaction.author) {}
-        //TODO
-        //Add a restriction to regulars that prevent them from using this command
+        const roles  = interaction.member._roles
+        if (!roles.includes("926788900083630102")) return interaction.followUp("You are not a worker!")
+
         const accountSchema = require("../../models/account")
         const [ user, amount ] = args;
         const member = interaction.guild.members.cache.get(user)
