@@ -25,8 +25,7 @@ module.exports = {
      * @param {String[]} args
      */
     run: async (client, interaction, args) => {
-        const roles  = interaction.member._roles
-        if (!roles.includes("926788900083630102")) return interaction.followUp("You are not a worker!")
+        if (interaction.member.roles.cache.has("926788900083630102")) return interaction.followUp("You are not a worker!")
 
         const accountSchema = require("../../models/account")
         const [ user, amount ] = args;
